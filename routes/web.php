@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostLikeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
@@ -47,4 +48,7 @@ Route::post('/login', [LoginController::class, 'LoginUser']);
 
 //Logout User
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+
+//Like Route
+Route::post('/post/{post}/likes', [PostLikeController::class, 'like'])->name('posts.likes');
 

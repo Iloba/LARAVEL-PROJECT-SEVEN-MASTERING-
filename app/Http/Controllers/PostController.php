@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,12 @@ class PostController extends Controller
 {
     //index function
     public function index(){
-        return view('posts.index');
+
+        $posts = Post::paginate(24);
+
+        return view('posts.index', [
+            'posts' => $posts
+        ]);
     }
 
     //store posts
@@ -21,9 +27,7 @@ class PostController extends Controller
         ]);
            
         //Create a post by a user
-        $request->user()->posts()->create([
-            'body' => $request->body
-        ]);
+        $request->user()->posts()->create($request->only('body'));
 
         return back();
         
