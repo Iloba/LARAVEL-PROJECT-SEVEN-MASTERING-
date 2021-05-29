@@ -11,7 +11,9 @@ class PostController extends Controller
     //index function
     public function index(){
 
-        $posts = Post::paginate(24);
+
+        //Add eager loading to reduce number of queries
+        $posts = Post::latest()->with(['user', 'likes'])->paginate(24);
 
         return view('posts.index', [
             'posts' => $posts
@@ -31,5 +33,18 @@ class PostController extends Controller
 
         return back();
         
+    }
+
+    public function destroy(Post $post){
+        
+
+        //Only Authorized Users can delete Posts
+        if(!$post->ownedBy(auth()->user())){
+            return response(null, 406);
+        }
+
+        $post->delete();
+
+        return back();
     }
 }

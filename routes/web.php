@@ -32,7 +32,11 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 
 //Post controller
 Route::get('/posts', [PostController::class, 'index'])->name('posts');
+
+//store posts in database
 Route::post('/posts', [PostController::class, 'store']);
+//Delete Post
+Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('posts.delete');
 
 //Store user route
 Route::post('/register', [RegisterController::class, 'store']);
@@ -49,6 +53,9 @@ Route::post('/login', [LoginController::class, 'LoginUser']);
 //Logout User
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
-//Like Route
+//Like post Route
 Route::post('/post/{post}/likes', [PostLikeController::class, 'like'])->name('posts.likes');
+
+//Delete Like Route
+Route::delete('/post/{post}/likes', [PostLikeController::class, 'destroy'])->name('posts.likes');
 

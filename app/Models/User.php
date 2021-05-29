@@ -44,10 +44,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    //User has many Posts
     public function posts(){
         return $this->hasMany(Post::class);
     }
 
+
+    //User has many Likes 
     public function likes(){
         return $this->hasMany(Like::class);
     }
