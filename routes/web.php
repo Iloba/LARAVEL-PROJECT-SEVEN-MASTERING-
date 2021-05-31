@@ -36,6 +36,9 @@ Route::get('/posts', [PostController::class, 'index'])->name('posts');
 
 //store posts in database
 Route::post('/posts', [PostController::class, 'store']);
+
+//Show individual Post
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 //Delete Post
 Route::delete('/post/{post}', [PostController::class, 'destroy'])->name('posts.delete');
 

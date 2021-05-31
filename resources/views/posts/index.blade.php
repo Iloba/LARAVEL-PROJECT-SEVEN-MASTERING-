@@ -2,7 +2,7 @@
 @section('content')
     <div class="flex justify-center">
         <div class="w-8/12 bg-white p-6 rounded-lg mt-2 shadow">
-            
+            @auth
             <form action="{{route('posts')}}" method="POST" class="mb-3">
                 @csrf
                 <div class="mb-4">
@@ -25,6 +25,7 @@
                 </div>
 
             </form>
+            @endauth
             <div class="mt-2">
                 @if ($posts->count())
                     @foreach ($posts as $post)
